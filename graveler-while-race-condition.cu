@@ -31,7 +31,7 @@ __global__ void sim_rolls(int *d_maxOnes, int *d_rolls, int seed, bool *d_kill) 
 
     curandState state;
     curand_init(seed, idx, 0, &state);
-    while(*d_rolls < ROUNDS - (idx * 2) and !*d_kill){
+    while(*d_rolls < ROUNDS - (idx * 2) && !*d_kill){
         int ones = 0;
         for (int i = 0; i < ROLLS; i++) {
             int roll = curand(&state) % 4 + 1;
