@@ -12,7 +12,7 @@
 	I've taken some liberties to optimize it further, in addition to making it run in CUDA.
 	The kernel, __global__ void sim_rolls, does the heavy lifting, as it runs on the CUDA cores, reporting back to the system after completing.
 	Unnecessary arrays were dropped, instead keeping track of the fact that the rolls were done and how many times in a round a one was rolled, AKA graveler was too paralyzed to move.
-	Despite the virtual impossibility of actually getting 177 ones, I kept the condition and as such still keep track of how many roll sessions occurred.
+	The unnecessary check for 177 ones has been dropped. This is running too fast to stop at a precise target.
 	In this version, the number of roll sessions can overflow, but should not go below target. This wastes valuable time on excess roll sessions, but is faster than my other code because it's not constructing and destructing threads over and over.
 	Two kills are included - One within the stream that runs the simulation, one in a dedicated stream for stopping the simulation.
 	Now even more unhinged, trying out bitwise optimization. 
