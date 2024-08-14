@@ -22,6 +22,7 @@ __global__ void sim_rolls(int *d_maxOnes, unsigned long long *d_rolls, int seed)
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     if (idx >= ROUNDS) return;
     __shared__ int sharedMax[BLOCKSIZE];
+    __shared__ int newMax;
     curandState state;
     curand_init(seed, idx, 0, &state);
     while(*d_rolls < ROUNDS - (idx * 4)){
@@ -41,11 +42,14 @@ __global__ void sim_rolls(int *d_maxOnes, unsigned long long *d_rolls, int seed)
         sharedMax[threadIdx.x] = max(sharedMax[threadIdx.x], ones);
         atomicAdd(d_rolls, 1);
     }
-    int newMax = 0;
-    for (int x=0; x<BLOCKSIZE; x++){
-        newMax = max(sharedMax[x], newMax);
+    //Changed the code to only do this max operation on one thread per block. No idea if this is even wise.
+    if(threadIdx.x == 0){
+        for (int x=0; x<BLOCKSIZE; x++){
+            newMax = max(sharedMax[x], newMax);
+        }
+        atomicMax(d_maxOnes, newMax);
     }
-    atomicMax(d_maxOnes, newMax);
+    
 }
 
 int main() {
