@@ -51,7 +51,10 @@ void sim_rand(int thr){
 }
 
 int main(int argc, char **argv){
-    switch(getopt(argc, argv, "n:")){
+    switch(getopt(argc, argv, "hn:")){
+        case 'h':
+            printf("Usage: %s [OPTION]\n\t-h\t\tShow this help screen instead of running\n\t-n <number>\tSpecify number of roll sessions, instead of the default million\n\n", argv[0]);
+            return 1;
         case 'n':
             setRounds = atoll(optarg);
         default:
