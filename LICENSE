@@ -1,0 +1,16 @@
+These programs were made for a coding challenge to simulate the Graveler softlock as quickly as possible, so I'd like the public to freely have it. Public domain can be tricky though, as legal precedent has shown with such companies as Disney.
+This license does not currently have a name. Probably doesn't need one.
+I might replace it with the Unlicense if this gets too stupid.
+
+The License:
+This code IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT, and barring some minor restrictions, you may use it how you wish, as if it belongs to the public domain. One important restriction setting it apart from actual public-domain code is the malware clause.
+So, like Andersen's The Little Mermaid, if you make your own version, that doesn't give you the right to harass others for copyright over the original, no matter what license you make yours. You own the parts you authored, what one could call "Slaterium" after the Naruto v Slater case.
+You are encouraged to use an open source license, or this one, if you redistribute your version of the code. This is, however, not a requirement.
+You are allowed to distribute your versions in binary or source form.
+
+The Malware Clause:
+You are not allowed under this license to use this code maliciously, such as using it as a trojan horse for a malicious payload.
+Victims of your malware, parties misattributed in your malware distribution, and maintiners of repos with this code may seek damages, the law permitting, as if you committed not only a cybercrime but copyright infringement against those affected.
+Under this license, unmodified copies should not be distributed in binary form, except as necessary, and binary builds not from this repo should be considered modified. If someone sends you a build of this code and attributes it to this repo, throw out the binary and get the code from here.
+
+As of this version of the file, as long as this line remains in the LICENSE file, this license is a draft, and may be replaced with the Unlicense at the author's discretion.
