@@ -14,6 +14,7 @@
 
 #define ROUNDS 1000000
 #define ROLLS 231
+// New: Now works best with -O2 optimization level, whereas before any amount of optimization made it potato slow
 uint64_t setRounds = ROUNDS;
 using namespace std;
 int cores = thread::hardware_concurrency();
@@ -45,9 +46,7 @@ void sim_rand(int thr){
         rolls++;
     }
     if(thr == 0){
-        for(int n = 0; n < cores; n++){
-            maxOnes = max(sharedMax[n], maxOnes);
-        }
+        maxOnes = *max_element(sharedMax.begin(), sharedMax.end());
     }
 }
 
