@@ -32,12 +32,8 @@ vector<future<void>> m_Futures;
 void sim_rand(int thr){
     sharedMax[thr] = 0;
     while(rolls < setRounds - thr){
-        //uint8_t ones = 0;
         ones = 0;
-        //uint8_t curRolls = 0;
         curRolls = 0;
-        //unsigned __int128 roll = 0;
-        //roll = 0;
         for (uint8_t i = 0; i < 4; ++i){
             roll = rng[thr]();
             for (uint8_t j = 0; j < 64; j++){
