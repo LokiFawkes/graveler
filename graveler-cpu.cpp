@@ -9,6 +9,7 @@
 #include <chrono>
 #include <future>
 #include <vector>
+#include <algorithm>
 //Requires libpcg-cpp-dev (pcg-random.org)
 #include "pcg_random.hpp"
 
@@ -20,6 +21,9 @@ using namespace std;
 int cores = thread::hardware_concurrency();
 pcg_extras::seed_seq_from<random_device> seed_source;
 vector<pcg128_once_insecure> rng(cores);
+thread_local uint8_t ones;
+thread_local uint8_t curRolls;
+thread_local unsigned __int128 roll = 0;
 
 uint64_t rolls = 0;
 uint8_t maxOnes = 0;
@@ -28,9 +32,12 @@ vector<future<void>> m_Futures;
 void sim_rand(int thr){
     sharedMax[thr] = 0;
     while(rolls < setRounds - thr){
-        uint8_t ones = 0;
-        uint8_t curRolls = 0;
-        unsigned __int128 roll = 0;
+        //uint8_t ones = 0;
+        ones = 0;
+        //uint8_t curRolls = 0;
+        curRolls = 0;
+        //unsigned __int128 roll = 0;
+        //roll = 0;
         for (uint8_t i = 0; i < 4; ++i){
             roll = rng[thr]();
             for (uint8_t j = 0; j < 64; j++){
